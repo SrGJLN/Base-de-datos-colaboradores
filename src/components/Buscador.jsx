@@ -1,26 +1,31 @@
-import React from 'react'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import React from "react";
 
-const Buscador = () => {
+function Buscador({ data, dataFilter }) {
+  function filtro(e) {
+    const buscarColaborador = e.target.value.toLowerCase();
+
+    const resultados = data.filter(
+      (colaborador) =>
+        colaborador.nombre.toLowerCase().includes(buscarColaborador) ||
+        colaborador.correo.toLowerCase().includes(buscarColaborador) ||
+        colaborador.edad.toString().includes(buscarColaborador) ||
+        colaborador.cargo.toLowerCase().includes(buscarColaborador) ||
+        colaborador.telefono.includes(buscarColaborador)
+    );
+    dataFilter(resultados);
+  }
+
   return (
-    <Form inline>
-        <Row>
-          <Col xs="auto">
-            <Form.Control
-              type="text"
-              placeholder="Search"
-              className=" mr-sm-2"
-            />
-          </Col>
-          <Col xs="auto">
-            <Button type="submit">Submit</Button>
-          </Col>
-        </Row>
-      </Form>
-  )
+    <div className="buscador col-12 col-md-6">
+      <input
+        type="text"
+        name="Buscador"
+        id="buscador"
+        placeholder="Busca un colaborador"
+        onChange={filtro}
+      />
+    </div>
+  );
 }
 
-export default Buscador
+export default Buscador;

@@ -1,35 +1,37 @@
-import React from 'react'
-import Table from 'react-bootstrap/Table';
-const Listado = ({ collaborators }) => {
+import Table from "react-bootstrap/Table";
+
+function BasicExample({ dataFilter }) {
+  const colaboradores = dataFilter.map((colaborador) => (
+    <tr key={colaborador.id}>
+      <td>{colaborador.id}</td>
+      <td>{colaborador.nombre}</td>
+      <td>{colaborador.correo}</td>
+      <td>{colaborador.edad}</td>
+      <td>{colaborador.cargo}</td>
+      <td>{colaborador.telefono}</td>
+      <td>{colaborador.eliminar}</td>
+      <td>
+        <i className="fa-solid fa-trash-can"></i>
+      </td>
+    </tr>
+  ));
+
   return (
-  <>
-  <Table bordered hover>
-    <thead>
-    <tr>
-      {
-        Object.entries(collaborators[0]).map(([key, _]) => {
-        return <th key={key} className='text-capitalize' >{key}</th>
-        })
-      }
-  </tr>
-    </thead>
-    <tbody>
-      {collaborators.map(c => (
-       <tr key={c.id}>
-        <td>{c.id }</td>
-        <td>{ c.nombre}</td>
-        <td> { c.correo}</td>
-        <td> { c.edad}</td>
-        <td> { c.cargo}</td>
-        <td> { c.telefono}</td>
-      </tr>
-      )
-      )}
-      
-    </tbody>
+    <Table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>nombre</th>
+          <th>correo</th>
+          <th>edad</th>
+          <th>cargo</th>
+          <th>telefono</th>
+          <th>eliminar</th>
+        </tr>
+      </thead>
+      <tbody>{colaboradores}</tbody>
     </Table>
-  </>
-)
+  );
 }
 
-export default Listado
+export default BasicExample;

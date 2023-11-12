@@ -1,25 +1,51 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Listado } from './components/Listado';
-import { BaseColaboradores } from './json'
-import { Formulario } from './components/Formulario';
-import Alert from './Alert';
+import Buscador from "./components/Buscador";
+import Formulario from "./components/Formulario";
+import Listado from "./components/Listado";
 
-import './App.css';
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 
+import { BaseColaboradores } from "./components/BaseColaboradores";
+import { Alert } from "./components/Alert";
 
 function App() {
-  const [error, setError] = useState({});
+  const [data, setData] = useState(BaseColaboradores);
+  const [dataFilter, setDataFilter] = useState(data);
+
+  const eliminarColaborador = (id) =>{
+    const nuevaData = data.filter(colaborador=>
+      colaborador.id !== id);
+
+      setData(nuevaData);
+      setDataFilter(nuevaData);
+
+  }
+
   
 
   return (
     <>
-      <div className="container">  
-      <h1>Lista de colaboradores</h1>
-      <Formulario />
-    
-      <Listado colaboradores={BaseColaboradores} />
-      </div>
+      <h1 className="App-title">
+        {/* <FontAwesomeIcon icon={faUserGroup} /> */}
+        Lista de colaboradores
+      </h1>
+      <Buscador data={data} 
+      dataFilter={setDataFilter}
+      
+       />
+      <Listado
+        data={data}
+        dataFilter={dataFilter}
+        eliminarColaborador={eliminarColaborador}
+      />
+      <Formulario 
+      setDataFilter={setDataFilter}
+      setData={setData}
+      />
+      <Alert />
     </>
   );
 }

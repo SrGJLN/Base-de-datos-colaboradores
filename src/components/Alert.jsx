@@ -1,15 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const Alert = ({ error, msg, color }) => {
+export const Alert = ({ error, mensaje, color }) => {
   return (
-    <div>
-      {error ? (
-        <div className={`alert alert-${color}`} role="alert">
-          {msg}
-        </div>
-      ) : null}
+    <div className={`alert alert-${color}`}>
+      {error ? <p>{mensaje}</p> : <strong>{mensaje}</strong>}
     </div>
   );
-}
-
-export default Alert;
+};

@@ -1,35 +1,39 @@
-import React from 'react'
-import Table from 'react-bootstrap/Table';
-const Listado = ({ collaborators }) => {
+import Table from "react-bootstrap/Table";
+
+function Listado({ dataFilter, eliminarColaborador }) {
+  const colaboradores = dataFilter.map((colaborador) => (
+    <tr key={colaborador.id}>
+      <td>{colaborador.id}</td>
+      <td>{colaborador.nombre}</td>
+      <td>{colaborador.correo}</td>
+      <td>{colaborador.edad}</td>
+      <td>{colaborador.cargo}</td>
+      <td>{colaborador.telefono}</td>
+      <td><button onClick={()=> 
+      eliminarColaborador (colaborador.id)}>Eliminar</button></td>
+      {/* <td>
+        {<i className="fa-solid fa-trash-can"></i>}
+      </td> */}
+    </tr>
+  ));
+
+
   return (
-  <>
-  <Table bordered hover>
-    <thead>
-    <tr>
-      {
-        Object.entries(collaborators[0]).map(([key, _]) => {
-        return <th key={key} className='text-capitalize' >{key}</th>
-        })
-      }
-  </tr>
-    </thead>
-    <tbody>
-      {collaborators.map(c => (
-       <tr key={c.id}>
-        <td>{c.id }</td>
-        <td>{ c.nombre}</td>
-        <td> { c.correo}</td>
-        <td> { c.edad}</td>
-        <td> { c.cargo}</td>
-        <td> { c.telefono}</td>
-      </tr>
-      )
-      )}
-      
-    </tbody>
+    <Table striped bordered hover responsive>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Edad</th>
+          <th>Cargo</th>
+          <th>Telefono</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>{colaboradores}</tbody>
     </Table>
-  </>
-)
+  );
 }
 
-export default Listado
+export default Listado;

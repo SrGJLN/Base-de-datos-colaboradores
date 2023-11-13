@@ -6,4 +6,6 @@ export const Alert = ({ error, mensaje, color }) => {
       {error ? <p>{mensaje}</p> : <strong>{mensaje}</strong>}
     </div>
   );
-};
+}
+
+export default Alert;

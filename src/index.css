@@ -28,17 +28,16 @@ label {
   color: #535bf2;
 }
 
+table {
+  max-width: 1200px;
+}
+
 input {
   width: 100%;
   padding: 10px;
   margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-table {
-  align-items: center;
-  max-width: 1200px;
 }
 
 button[type="submit"] {
